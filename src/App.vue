@@ -1,32 +1,52 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="container mt-2">
+      <CoHeader :user_logged_in="user_logged_in" :user="user" />
+      <router-view />
+      <CoFooter />
     </div>
-    <router-view/>
   </div>
 </template>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+<script>
+import moment from "moment";
+import CoHeader from "@/components/CoHeader.vue";
+import CoFooter from "@/components/CoFooter.vue";
+import { mapState, mapActions } from "vuex";
+export default {
+  name: "App",
+  components: {
+    CoHeader,
+    CoFooter,
+  },
+  data() {
+    return {
+      intervalTimer: 0,
+    };
+  },
+  computed: {
+    ...mapState("storeProperties", {
+      dgProperties: (state) => state.dgProperties,
+    }),
+    user_logged_in() {
+      return this.$store.getters.token_authorized ? true : false;
+    },
+    user() {
+      return this.$store.state.user_logged_in;
+    },
+  },
+  methods: {
+    ...mapActions("storeProperties", ["setBlockingArrayProperties"]),
+  },
+  mounted() {
+    // Ejecutar el Timer.
+    this.intervalTimer = setInterval(() => {
+      this.setBlockingArrayProperties(this.dgProperties);
+    }, 1000);
+  },
+  beforeDestroy() {
+    console.log("destroy Interval:", this.intervalTimer);
+    clearInterval(this.intervalTimer);
+  },
+};
+</script>
+<style></style>
