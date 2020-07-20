@@ -9,8 +9,8 @@ Esta es una aplicación frontend que se conecta con una **ApiRest** realizada en
 - En el **_Home_** se muestran la lista de todas las propiedades registradas. Cada propiedad se muestra en una cartilla.
 - Se muestra una paginación por número de página(s) (perPage) y permite avanzar entre cada una de las páginas con los botones **_Anterior y siguiente_**.
 - Al presionar el boton **_ver detalles_** se muestra un modal con la ubicación en google maps, centrando el mapa en la ubicación con las coordenadas que fueron registradas.
-- Se incrementa el numero de visitas al presionar \***\*ver detalles\*\*** de la propiedad.
-- El modal de la cartilla presenta un boton \***\*Contactar\*\*** que permite enviar una notificación por correo al propietario.
+- Se incrementa el numero de visitas al presionar **_ver detalles_** de la propiedad.
+- El modal de la cartilla presenta un boton **_Contactar_** que permite enviar una notificación por correo al propietario.
 - Se realiza un bloqueo por 6 minutos evitando que se vuelva a enviar una notificación al usuario, pasado los 6 minutos se vuelve activar el boton.
 - El boton registrar permite al usuario ingresar al panel donde podrá ingresar propiedades.
 - El boton Login permite acceder al panel en donde puede borrar y crear nuevas propiedades
@@ -32,7 +32,7 @@ $ npm install
 
 ### Configuración
 
-Setear las variables de configuración para los archivos \***\*.env y .env.production\*\***
+Setear las variables de configuración para los archivos **_.env y .env.production_**
 
 ```sh
 VUE_APP_API_URL=http://localhost:3000/apiwithrubyonrails
